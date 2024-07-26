@@ -58,14 +58,16 @@ def get_min(max_mento, n, wait_times):
                 cur = q.get()
 
                 for i in range(1, max_mento + 1):
-                    q.put(cur + [i])
+                    new_cur = cur + [i]
+                    if sum(new_cur) > n:
+                        continue
+
+                    q.put(new_cur)
 
     min_wait = math.inf
     for _ in range(q.qsize()):
         cur = q.get()
 
-        if sum(cur) > n:
-            continue
         wait_time = 0
         for i, mento in enumerate(cur):
             wait_time += wait_times[i][mento]
