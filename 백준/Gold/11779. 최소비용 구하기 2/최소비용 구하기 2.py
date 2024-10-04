@@ -26,12 +26,12 @@ def dijkstra(start, end):
                 heapq.heappush(pq, (new_cost, nxt))
 
     cur = end
-    path = [end]
+    path = []
     while True:
-        if cur == start:
+        if cur == -1:
             break
-        cur = parents[cur]
         path.append(cur)
+        cur = parents[cur]
     path.reverse()
 
     return dp[end], path
